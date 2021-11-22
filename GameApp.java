@@ -120,7 +120,7 @@ public class GameApp {
 		br16.add("Macedonia");
 		br16.add("Babylon");
 		br16.add("Crete");
-		br17.add("Ravenna");
+		br17.add("Alexandria");
 		br17.add("Corinth");
 		br17.add("Persepolis");
 		br17.add("Thinis");
