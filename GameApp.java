@@ -90,7 +90,6 @@ public class GameApp {
 		br7.add("Tanis");
 		br7.add("Macedonia");
 		br7.add("Corinth");
-		br7.add("Susa");
 		br8.add("Rome");
 		br8.add("Florence");
 		br9.add("Sicily");
