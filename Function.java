@@ -56,14 +56,16 @@ public class Function {
 					}
 					
 					System.out.println("Where do you want to attack ?");
-					System.out.println(GameApp.tabler[ra].getBorders()); //Print borders of region tabler[ra] ( example prints : [Athens, Sparta]
+					ArrayList<String> alliedBrds = new ArrayList<String>();
+					alliedBrds = GameApp.tabler[ra].getBorders();
+					System.out.println(alliedBrds); //Print borders of region tabler[ra] ( example prints : [Athens, Sparta]
 				
 					String rds = null;
 					boolean flag2 = true;
 					while(flag2) { // Check valid input
 						rds = keyboard.nextLine();	
-						for(int counter = 0; counter <= 19; counter++) { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-							if(true) {
+						for(int counter = 0; counter <= alliedBrds.size(); counter++) { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+							if(rds.equals(alliedBrds.get(counter))) {
 								flag2 = false;
 								break;
 							}
@@ -98,7 +100,6 @@ public class Function {
 	}
 	
 	public static void attack(int ra, int rd) { // The option of attack ( from where to where; ) //
-		
 		
 	}
 	
