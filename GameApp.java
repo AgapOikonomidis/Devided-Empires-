@@ -2,7 +2,7 @@ import java.util.ArrayList;
 public class GameApp {
 	
 	static ArrayList<String> br1, br2, br3, br4, br5, br6, br7, br8, br9, br10 = new ArrayList<String>();
-	static ArrayList<String> br11,br12,br13,br14,br15,br16,br17,br18,br19,br20 = new ArrayList<String>();
+	static ArrayList<String> br11, br12, br13, br14, br15, br16, br17, br18, br19, br20 = new ArrayList<String>();
 	
 	static Region r1 = new Region("Athens", 3, "Blue", br1);
 	static Region r2 = new Region("Sparta", 5, "Red", br2);
