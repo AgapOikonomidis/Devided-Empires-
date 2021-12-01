@@ -6,7 +6,7 @@ public class Function {
 	static Scanner keyboard = new Scanner(System.in);
 		
 	public static void gameStart() { // Starts the game with round 1 //
-		int answer = 0;
+
 		for(int i = 1;i <= 50; i++) { 
 			for(int j = 0; j <= 3; j++) {
 				
@@ -20,16 +20,16 @@ public class Function {
 				System.out.println(GameApp.tablep[j].getPlayerName()+" is your turn to play");
 				placeSoldiers(checkSoldiers(j), j, alliedStates);
 				
-				boolean flag3 = true;
-				answer = 0;
-				while(flag3) {	// Shows Menu at each round
+				boolean flag = true;
+				int answer = 0;
+				while(flag) {	// Shows Menu at each round
 					System.out.println("Choose your next move :");
 					System.out.println("1. Attack"); 
 					System.out.println("2. Fortify)");
 					System.out.println("3. Skip");
 					answer = keyboard.nextInt();
 					if(answer == 1 || answer ==2 || answer == 3) { // Check valid input for the options attack/fortify /skip
-						flag3 = false;
+						flag = false;
 					}
 				}
 							
@@ -40,12 +40,12 @@ public class Function {
 					}
 				
 					String ras = null;
-					boolean flag = true; 
-					while(flag) { // Check valid input
+					boolean flag2 = true; 
+					while(flag2) { // Check valid input
 						ras = keyboard.nextLine();
 						for(int counter = 0; counter <= alliedStates.size(); counter++) {
 							if(ras.equals(alliedStates.get(counter))) {
-								flag = false;
+								flag2 = false;
 								break;
 							}
 						}							
@@ -65,12 +65,12 @@ public class Function {
 					System.out.println(alliedBrds); //Print borders of region tabler[ra] ( example prints : [Athens, Sparta]
 				
 					String rds = null;
-					boolean flag2 = true;
-					while(flag2) { // Check valid input
+					boolean flag3 = true;
+					while(flag3) { // Check valid input
 						rds = keyboard.nextLine();	
 						for(int counter = 0; counter <= alliedBrds.size(); counter++) { // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 							if(rds.equals(alliedBrds.get(counter))) {
-								flag2 = false;
+								flag3 = false;
 								break;
 							}
 						}
@@ -100,10 +100,27 @@ public class Function {
 	
 	public static void placeSoldiers(int s, int j, ArrayList<String> alliedStates) { // Players choose where to place their soldiers //
 		while(s != 0) {
-			
+			System.out.println(alliedStates);
 			System.out.println("Where would you like to place your soldiers ? ");
 			System.out.println("Remaining soldiers to place : " + s);
 			
+			String answer4 = null;
+			boolean flag4 = true;
+			while(flag4) {
+				answer4 = keyboard.nextLine();
+				for(int counter = 0; counter <= alliedStates.size(); counter++) {
+					if(answer4.equals(alliedStates.get(counter))) {
+						flag4 = false;
+						break;
+					}
+				}
+			}
+			
+			System.out.println("How many soldiers do you want to place ?");
+			int answer5 = -1;
+			while(answer5 < 0) {
+				answer5 = keyboard.nextInt();
+			}
 		}
 	}
 	
@@ -142,6 +159,5 @@ public class Function {
 	
 	public static void skip(int j ) {
 		System.out.println(GameApp.tablep[j].getPlayerName() + " skipped his turn");
-	}
-		
+	}	
 }
