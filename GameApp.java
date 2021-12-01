@@ -25,10 +25,10 @@ public class GameApp {
 	static Region r19 = new Region("Persepolis", 7, "Green", br19);
 	static Region r20 = new Region("Babylon", 2, "Yellow", br20);
 				
-	static Region[] tabler = {	r1, r2, r3, r4, r5,
-								r6, r7, r8, r9, r10,
-								r11, r12, r13, r14, r15,
-								r16, r17, r18, r19, r20 };
+	static Region[] tabler = { r1, r2, r3, r4, r5,
+				   r6, r7, r8, r9, r10,
+				   r11, r12, r13, r14, r15,
+				   r16, r17, r18,r19 , r20 };
 		
 	static Player p1 = new Player("", "Blue", 20, 5);
 	static Player p2 = new Player("", "Red", 20, 5);
