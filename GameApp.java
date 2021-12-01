@@ -135,6 +135,7 @@ public class GameApp {
 	public static void main(String[] args) {
 		
 		GameApp.borderPlacing();
-		Function.gamestart();
+		Function.gameStart();
 	}	
 }
+

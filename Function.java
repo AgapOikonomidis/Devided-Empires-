@@ -6,14 +6,22 @@ public class Function {
 	static Scanner keyboard = new Scanner(System.in);
 		
 	public static void gameStart() { // Starts the game with round 1 //
+		int answer = 0;
 		for(int i = 1;i <= 50; i++) { 
 			for(int j = 0; j <= 3; j++) {
 				
+				String tempColor = GameApp.tablep[j].getPlayerColor(); 
+				ArrayList<String> alliedStates = new ArrayList<String>();
+				for(int k = 0; k <= 19; k++) {
+					if(tempColor.equals(GameApp.tabler[k].getRegionColor())) {
+						alliedStates.add(GameApp.tabler[k].getRegionName());						
+					}
+				}
 				System.out.println(GameApp.tablep[j].getPlayerName()+" is your turn to play");
-				placeSoldiers(checkSoldiers(j),j);
+				placeSoldiers(checkSoldiers(j), j, alliedStates);
 				
 				boolean flag3 = true;
-				int answer = 0;
+				answer = 0;
 				while(flag3) {	// Shows Menu at each round
 					System.out.println("Choose your next move :");
 					System.out.println("1. Attack"); 
@@ -27,13 +35,8 @@ public class Function {
 							
 				if(answer == 1) {
 					System.out.println("From where do you want to attack ?"); // Attack
-					String tempColor = GameApp.tablep[j].getPlayerColor(); 
-					ArrayList<String> alliedStates = new ArrayList<String>();
-					for(int k = 0; k <= 19; k++) {
-						if(tempColor.equals(GameApp.tabler[k].getRegionColor())) {
-							alliedStates.add(GameApp.tabler[k].getRegionName());
-							System.out.println(GameApp.tabler[k].getRegionName());						
-						}
+					for(int k = 0; k <= alliedStates.size(); k++) {
+						System.out.println(alliedStates.get(k));					
 					}
 				
 					String ras = null;
@@ -47,7 +50,7 @@ public class Function {
 							}
 						}							
 					}
-				
+					
 					int ra = 0; // Save attacker's index in tabler[]
 					for(int counter = 0; counter <= 19; counter++) {
 						if(ras.equals(GameApp.tabler[counter].getRegionName())) {
@@ -85,18 +88,17 @@ public class Function {
 					fortify();
 				} else {
 					skip(j);
-				}
+			 	}
 			}
 		}
 	}
-	
 	public static int checkSoldiers(int j) { // Gives soldiers to players depending on their regions' number //
 		int nof = GameApp.tablep[j].getPlayerRegions()/2 +1;
 		System.out.println(GameApp.tablep[j].getPlayerName() + " recieves " + nof + " soldiers");	
 		return nof;
 	}
 	
-	public static void placeSoldiers(int s, int j) { // Players choose where to place their soldiers //
+	public static void placeSoldiers(int s, int j, ArrayList<String> alliedStates) { // Players choose where to place their soldiers //
 		while(s != 0) {
 			
 			System.out.println("Where would you like to place your soldiers ? ");
@@ -140,5 +142,6 @@ public class Function {
 	
 	public static void skip(int j ) {
 		System.out.println(GameApp.tablep[j].getPlayerName() + " skipped his turn");
-	}		
+	}
+		
 }
