@@ -1,27 +1,8 @@
 import java.util.ArrayList;
 public class GameApp {
 	
-	static ArrayList<String> br1 = new ArrayList<String>();
-	static ArrayList<String> br2 = new ArrayList<String>();
-	static ArrayList<String> br3 = new ArrayList<String>();
-	static ArrayList<String> br4 = new ArrayList<String>();
-	static ArrayList<String> br5 = new ArrayList<String>();
-	static ArrayList<String> br6 = new ArrayList<String>();
-	static ArrayList<String> br7 = new ArrayList<String>();
-	static ArrayList<String> br8 = new ArrayList<String>();
-	static ArrayList<String> br9 = new ArrayList<String>();
-	static ArrayList<String> br10 = new ArrayList<String>();
-	static ArrayList<String> br11 = new ArrayList<String>();
-	static ArrayList<String> br12 = new ArrayList<String>();
-	static ArrayList<String> br13 = new ArrayList<String>();
-	static ArrayList<String> br14 = new ArrayList<String>();
-	static ArrayList<String> br15 = new ArrayList<String>();
-	static ArrayList<String> br16 = new ArrayList<String>();
-	static ArrayList<String> br17 = new ArrayList<String>();
-	static ArrayList<String> br18 = new ArrayList<String>();
-	static ArrayList<String> br19 = new ArrayList<String>();
-	static ArrayList<String> br20 = new ArrayList<String>();
-	
+	static ArrayList<String> br1, br2, br3, br4, br5, br6, br7, br8, br9, br10 = new ArrayList<String>();
+	static ArrayList<String> br11,br12,br13,br14,br15,br16,br17,br18,br19,br20 = new ArrayList<String>();
 	
 	static Region r1 = new Region("Athens", 3, "Blue", br1);
 	static Region r2 = new Region("Sparta", 5, "Red", br2);
