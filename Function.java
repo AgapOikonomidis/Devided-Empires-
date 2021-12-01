@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Random;
 public class Function {
 	
 	static Scanner keyboard = new Scanner(System.in);
@@ -100,7 +101,32 @@ public class Function {
 	}
 	
 	public static void attack(int ra, int rd) { // The option of attack ( from where to where; ) //
-		
+		Random dice = new Random();
+		int attackerSoldiers = GameApp.tabler[ra].getRegionSoldiers();
+		int defenderSoldiers = GameApp.tabler[rd].getRegionSoldiers();
+		int adice = 0;
+		int ddice = 0;
+		while(attackerSoldiers != 1 || defenderSoldiers != 0) {
+			adice = 1 +	dice.nextInt(6);
+			ddice = 1 + dice.nextInt(6);
+			if(adice >= ddice) {
+				defenderSoldiers = defenderSoldiers - 1;
+			} else {
+				attackerSoldiers = attackerSoldiers - 1;
+			}				
+		}
+		if(attackerSoldiers == 1) { // Attacker loses
+			GameApp.tabler[ra].setRegionSoldiers(1);
+			GameApp.tabler[rd].setRegionSoldiers(defenderSoldiers);
+		}
+		int answer2 = 0;
+		if(defenderSoldiers == 0) { // Attacker wins
+			System.out.println("Attacker wins ! How many soldiers do you want to place in " + GameApp.tabler[rd].getRegionName());
+			answer2 = keyboard.nextInt();
+			GameApp.tabler[rd].setRegionSoldiers(answer2);
+			GameApp.tabler[ra].setRegionSoldiers(attackerSoldiers - answer2);
+			GameApp.tabler[rd].setRegionColor(GameApp.tabler[ra].getRegionColor());
+		}
 	}
 	
 	public static void fortify() { // The option of fortifying soldiers ( from where; to where; how much; ) //
