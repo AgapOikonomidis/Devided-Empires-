@@ -10,7 +10,7 @@ public class Function {
 			for(int j = 0; j <= 3; j++) {
 				
 				System.out.println(GameApp.tablep[j].getPlayerName()+" is your turn to play");
-				placeSoldiers(checkSoldiers(j));
+				placeSoldiers(checkSoldiers(j),j);
 				
 				boolean flag3 = true;
 				int answer = 0;
@@ -84,20 +84,25 @@ public class Function {
 				} else if(answer == 2)  {
 					fortify();
 				} else {
-					skip();
+					skip(j);
 				}
 			}
 		}
 	}
 	
-	public static int checkSoldiers(int i) { // Gives soldiers to players depending on their regions' number //
-		
-		int nof = 0;
+	public static int checkSoldiers(int j) { // Gives soldiers to players depending on their regions' number //
+		int nof = GameApp.tablep[j].getPlayerRegions()/2 +1;
+		System.out.println(GameApp.tablep[j].getPlayerName() + " recieves " + nof + " soldiers");	
 		return nof;
 	}
 	
-	public static void placeSoldiers(int s) { // Players choose where to place their soldiers //
-		
+	public static void placeSoldiers(int s, int j) { // Players choose where to place their soldiers //
+		while(s != 0) {
+			
+			System.out.println("Where would you like to place your soldiers ? ");
+			System.out.println("Remaining soldiers to place : " + s);
+			
+		}
 	}
 	
 	public static void attack(int ra, int rd) { // The option of attack ( from where to where; ) //
@@ -133,8 +138,7 @@ public class Function {
 	
 	}
 	
-	public static void skip() {
-		
-	}
-		
+	public static void skip(int j ) {
+		System.out.println(GameApp.tablep[j].getPlayerName() + " skipped his turn");
+	}		
 }
