@@ -1,6 +1,4 @@
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 public class Function {
 	
 	static Scanner keyboard = new Scanner(System.in); // Used to get input from players
