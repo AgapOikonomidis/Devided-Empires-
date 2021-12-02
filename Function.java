@@ -101,13 +101,13 @@ public class Function {
 			 	}
 			}
 		}
-	}
+	} // End of gameStart()
 	
 	public static int checkSoldiers(int j) { // Gives soldiers to players depending on their regions' number //
 		int nof = GameApp.tablep[j].getPlayerRegions()/2 +1;
 		System.out.println(GameApp.tablep[j].getPlayerName() + " recieves " + nof + " soldiers");	
 		return nof;
-	}
+	} // End of checkSoldiers()
 	
 	public static void placeSoldiers(int s, int j, ArrayList<String> alliedStates) { // Players choose where to place their soldiers //
 		while(s != 0) {
@@ -149,7 +149,7 @@ public class Function {
 			GameApp.tabler[pr].setRegionSoldiers(GameApp.tabler[pr].getRegionSoldiers()+1);
 			s = s - 1;
 		}
-	}
+	} // End of placeSoldiers()
 	
 	public static void attack(int ra, int rd) { // The option of attack ( from where to where; ) //
 		Random dice = new Random();
@@ -187,13 +187,13 @@ public class Function {
 				}
 			}
 		}
-	}
+	} // End of attack()
 	
 	public static void fortify() { // The option of fortifying soldiers ( from where; to where; how much; ) //
 	
-	}
+	} // End of fortify()
 	
 	public static void skip(int j ) {
 		System.out.println(GameApp.tablep[j].getPlayerName() + " skipped his turn");
-	}	
-}
+	}	// End of skip()
+} // End of class 
