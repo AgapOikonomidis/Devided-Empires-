@@ -44,7 +44,11 @@ public class Region {
 
 	public void setBorders(ArrayList<String> borders) {
 		this.borders = borders;
-	}	
-	
-	
+	}
+
+	@Override
+	public String toString() {
+		return "Region [regionName=" + regionName + ", regionSoldiers=" + regionSoldiers + ", regionColor="
+				+ regionColor + ", borders=" + borders + "]";
+	}			
 }
