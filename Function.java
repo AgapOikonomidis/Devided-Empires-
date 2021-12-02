@@ -6,7 +6,8 @@ public class Function {
 	static Scanner keyboard = new Scanner(System.in); // Used to get input from players
 		
 	public static void gameStart() { // Starts the game with round 1 //
-		
+		int j2 = 4;
+		String defenderColor;
 		boolean flag = true; 
 		int answerI = 0; // Used for integer answers
 		String answerS = null; // Used for String answers
@@ -96,7 +97,13 @@ public class Function {
 						}
 					}
 					
-					attack(ra,rd);				
+					defenderColor = GameApp.tabler[rd].getRegionColor();
+					for(int counter = 0; counter <= 3; counter++) {
+						if(defenderColor.equals(GameApp.tablep[counter].getPlayerColor())) {
+							j2 = counter;
+						}
+					}
+					attack(ra, rd, j, j2);				
 				} else if(answerI == 2)  { // Option 2 : fortify
 					System.out.println("From where do you want to move soldiers ?");
 					System.out.println(alliedStates);
@@ -220,7 +227,7 @@ public class Function {
 		}
 	} // End of placeSoldiers()
 	
-	public static void attack(int ra, int rd) { // The option of attack ( from where to where; ) //
+	public static void attack(int ra, int rd, int ja, int jd) { // The option of attack ( from where to where; ) //
 		
 		int answerI;
 		boolean flag;
@@ -245,6 +252,8 @@ public class Function {
 		answerI = 0;
 		flag = true;
 		if(defenderSoldiers == 0) { // Attacker wins
+			GameApp.tablep[ja].setPlayerRegions(GameApp.tablep[ja].getPlayerRegions() + 1); // Increases attacker's regions by 1
+			GameApp.tablep[jd].setPlayerRegions(GameApp.tablep[jd].getPlayerRegions() - 1); // Decreases defender's regions by 1
 			System.out.println("Attacker wins ! How many soldiers do you want to place in " + GameApp.tabler[rd].getRegionName());
 			while(flag) {
 				answerI = keyboard.nextInt();
