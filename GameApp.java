@@ -125,8 +125,8 @@ public class GameApp {
 					r11, r12, r13, r14, r15,
 					r16, r17, r18, r19, r20 };
 		
-	static Player p1 = new Player("", "Blue", 20, 5);
-	static Player p2 = new Player("", "Red", 20, 5);
+	static Player p1 = new Player("Efthimis", "Blue", 20, 5);
+	static Player p2 = new Player("Agapitos", "Red", 20, 5);
 	static Player p3 = new Player("", "Green", 20, 5);
 	static Player p4 = new Player("", "Yellow", 20, 5);
 	
