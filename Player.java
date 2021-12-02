@@ -1,5 +1,5 @@
 public class Player {
-	
+
 	private String playerName;
 	private String playerColor;
 	private int playerSoldiers;
@@ -17,7 +17,7 @@ public class Player {
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
 	}
-	public String getPlayerColor() { 
+	public String getPlayerColor() {
 		return playerColor;
 	}
 	public void setPlayerColor(String playerColor) {
@@ -35,6 +35,9 @@ public class Player {
 	public void setPlayerRegions(int playerRegions) {
 		this.playerRegions = playerRegions;
 	}
+	@Override
+	public String toString() {
+		return "Player [playerName=" + playerName + ", playerColor=" + playerColor + ", playerSoldiers="
+				+ playerSoldiers + ", playerRegions=" + playerRegions + "]";
+	}	
 }
-
-
