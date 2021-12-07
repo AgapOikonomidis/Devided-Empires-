@@ -23,13 +23,20 @@ public class Function {
 		int f2 = 0; // Used for saving fortify Region 2 index in tabler[] //
 		int answerI = 0; // Used for integer answers //
 		int counter = 0; // Used as loop counter //
+		int counter2 = 0; // Used as loop counter //
 		int j2 = 4; // Used for saving player's index in table p[] //
+
+		ArrayList<String> alliedStates = new ArrayList<String>(); // Contains player's allied Regions //
+		ArrayList<String> alliedBrds = new ArrayList<String>(); // Contains allied borders of a player's Region //
+		ArrayList<String> frtfBrds = new ArrayList<String>(); // Contains fortifying Region's borders //
+		ArrayList<String> fortifyBorders = new ArrayList<String>(); // Contains fortifying Region's borders with the
+																	// same color //
 
 		for (int i = 1; i <= 50; i++) { // Round i
 			for (int j = 0; j <= 3; j++) { // Player j
 
 				tempColor = GameApp.tablep[j].getPlayerColor();
-				ArrayList<String> alliedStates = new ArrayList<String>();
+				alliedStates.clear(); // Removes all elements
 				for (counter = 0; counter <= 19; counter++) {
 					if (tempColor.equals(GameApp.tabler[counter].getRegionColor())) {
 						alliedStates.add(GameApp.tabler[counter].getRegionName());
@@ -83,7 +90,7 @@ public class Function {
 					}
 
 					System.out.println("Where do you want to attack ?");
-					ArrayList<String> alliedBrds = new ArrayList<String>();
+					alliedBrds.clear(); // Removes all elements
 					alliedBrds = GameApp.tabler[ra].getBorders();
 					System.out.println(alliedBrds); // Print borders of region tabler[ra]
 					flag = true;
@@ -140,12 +147,12 @@ public class Function {
 					}
 
 					System.out.println("Where do you want to move your soldiers ?");
-					ArrayList<String> frtfBrds = new ArrayList<String>();
-					ArrayList<String> fortifyBorders = new ArrayList<String>();
+					frtfBrds.clear(); // Removes all elements
+					fortifyBorders.clear(); // Removes all elements
 					frtfBrds = GameApp.tabler[f1].getBorders();
 					fcolor = GameApp.tabler[f1].getRegionColor();
 					for (counter = 0; counter <= frtfBrds.size(); counter++) { // Accessing ArrayList frtfBrds
-						for (int counter2 = 0; counter2 <= 19; counter2++) { // Accessing Array tabler[]
+						for (counter2 = 0; counter2 <= 19; counter2++) { // Accessing Array tabler[]
 							if (GameApp.tabler[counter2].getRegionName().equals(frtfBrds.get(counter))) { // Name in
 																											// Array
 																											// matches
