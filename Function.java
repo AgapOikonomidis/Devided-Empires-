@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -8,9 +9,9 @@ public class Function {
 
 	public static void gameStart() { // Starts the game with round 1 //
 
-		String tempColor = null; // Used for saving player's color //
-		String fcolor = null; // Used for saving fortifying region's color //
-		String defenderColor = null; // Used for saving defender's color //
+		Color tempColor = null; // Used for saving player's color //
+		Color fcolor = null; // Used for saving fortifying region's color //
+		Color defenderColor = null; // Used for saving defender's color //
 		String ras = null; // Used for saving attacker's Region (String) //
 		String rds = null; // Used for saving defender's Region (String) //
 		String answerS = null; // Used for String answers//
@@ -48,7 +49,7 @@ public class Function {
 				while (flag) { // Shows Menu at each round
 					System.out.println("Choose your next move :");
 					System.out.println("1. Attack");
-					System.out.println("2. Fortify)");
+					System.out.println("2. Fortify");
 					System.out.println("3. Skip");
 					answerI = keyboard.nextInt();
 					if (answerI == 1 || answerI == 2 || answerI == 3) { // Check valid input for the options
@@ -64,22 +65,26 @@ public class Function {
 				if (answerI == 1) { // Option 1 : attack
 
 					System.out.println("From where do you want to attack ?");
-					for (counter = 0; counter <= alliedStates.size(); counter++) {
-						System.out.println(alliedStates.get(counter));
+					try {
+						for (counter = 0; counter < alliedStates.size(); counter++) {
+							System.out.println(alliedStates.get(counter));
+						}
+					} catch (IndexOutOfBoundsException e) {
+						System.out.print("Region not found, please try again...");
 					}
 					flag = true;
 					while (flag) { // Check valid input
+
 						ras = keyboard.nextLine();
-						for (counter = 0; counter <= alliedStates.size(); counter++) {
+						for (counter = 0; counter < alliedStates.size(); counter++) {
 							if (ras.equals(alliedStates.get(counter))) {
 								flag = false;
 								break;
+							} else {
+								System.out.println("Region not found, please try again..."); // Wrong input message
 							}
 						}
 
-						if (flag == true) {
-							System.out.println("Region not found, please try again..."); // Wrong input message
-						}
 					}
 
 					for (counter = 0; counter <= 19; counter++) {
@@ -96,7 +101,7 @@ public class Function {
 					flag = true;
 					while (flag) { // Check valid input
 						rds = keyboard.nextLine();
-						for (counter = 0; counter <= alliedBrds.size(); counter++) {
+						for (counter = 0; counter < alliedBrds.size(); counter++) {
 							if (rds.equals(alliedBrds.get(counter))) {
 								flag = false;
 								break;
@@ -128,7 +133,7 @@ public class Function {
 					flag = true;
 					while (flag) { // Check valid input
 						answerS = keyboard.nextLine();
-						for (counter = 0; counter <= alliedStates.size(); counter++) {
+						for (counter = 0; counter < alliedStates.size(); counter++) {
 							if (answerS.equals(alliedStates.get(counter))) {
 								flag = false;
 								break;
@@ -151,7 +156,7 @@ public class Function {
 					fortifyBorders.clear(); // Removes all elements
 					frtfBrds = GameApp.tabler[f1].getBorders();
 					fcolor = GameApp.tabler[f1].getRegionColor();
-					for (counter = 0; counter <= frtfBrds.size(); counter++) { // Accessing ArrayList frtfBrds
+					for (counter = 0; counter < frtfBrds.size(); counter++) { // Accessing ArrayList frtfBrds
 						for (counter2 = 0; counter2 <= 19; counter2++) { // Accessing Array tabler[]
 							if (GameApp.tabler[counter2].getRegionName().equals(frtfBrds.get(counter))) { // Name in
 																											// Array
@@ -171,7 +176,7 @@ public class Function {
 					flag = true;
 					while (flag) { // Check valid input
 						answerS = keyboard.nextLine();
-						for (counter = 0; counter <= fortifyBorders.size(); counter++) {
+						for (counter = 0; counter < fortifyBorders.size(); counter++) {
 							if (answerS.equals(fortifyBorders.get(counter))) {
 								flag = false;
 								break;
@@ -217,16 +222,20 @@ public class Function {
 			System.out.println("Remaining soldiers to place : " + s);
 			flag = true;
 			while (flag) { // Check valid input
-				answerS = keyboard.nextLine();
-				for (counter = 0; counter <= alliedStates.size(); counter++) {
-					if (answerS.equals(alliedStates.get(counter))) {
-						flag = false;
-						break;
+				try {
+					answerS = keyboard.nextLine();
+					for (counter = 0; counter < alliedStates.size(); counter++) {
+						if (answerS.equals(alliedStates.get(counter))) {
+							flag = false;
+							break;
+						}
 					}
-				}
 
-				if (flag == true) {
-					System.out.println("Region not found, please try again..."); // Wrong input message
+					if (flag == true) {
+						System.out.println("Region not found, please try again..."); // Wrong input message
+					}
+				} catch (IndexOutOfBoundsException e) {
+					System.out.print("");
 				}
 			}
 
@@ -241,9 +250,13 @@ public class Function {
 			while (flag) { // Check valid input
 				answerI = keyboard.nextInt();
 				if (answerI < 0) {
-					System.out.println("Wrong input : Positive number of soldiers expected, please try again"); // Wrong
-																												// input
-																												// message
+					System.out.println("Wrong input : Positive number of soldiers expected, please try again."); // Wrong
+																													// input
+																													// message
+				} else if (s - answerI < 0) {
+					System.out.println("You dont have enough soldiers for that."); // Valid input but more soldiers than
+																					// you have
+					System.out.println("Try again...");
 				} else {
 					flag = false;
 				}
