@@ -215,23 +215,24 @@ public class Function {
 		int counter = 0; // Used as loop counter //
 		int answerI = 0; // Used for integer answers //
 		boolean flag = true; // Used for while{} loop //
+		int flagint = 0;
 		String answerS = null; // Used for String answers //
 		while (s != 0) {
 			System.out.println(alliedStates);
 			System.out.println("Where would you like to place your soldiers ? ");
 			System.out.println("Remaining soldiers to place : " + s);
 			flag = true;
-			while (flag) { // Check valid input
+			outerloop: while (flag) { // Check valid input
 				try {
 					answerS = keyboard.nextLine();
 					for (counter = 0; counter < alliedStates.size(); counter++) {
 						if (answerS.equals(alliedStates.get(counter))) {
-							flag = false;
-							break;
+							flagint = 1;
+							break outerloop;
 						}
 					}
 
-					if (flag == true) {
+					if (flagint == 0) {
 						System.out.println("Region not found, please try again..."); // Wrong input message
 					}
 				} catch (IndexOutOfBoundsException e) {
