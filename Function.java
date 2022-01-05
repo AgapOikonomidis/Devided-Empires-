@@ -18,6 +18,7 @@ public class Function {
 
 		boolean flag = true; // Used for while{} loop //
 
+		int flagint = 0; // Used for FLAG INT
 		int ra = 0; // Used to save attacker's Region index in tabler[] //
 		int rd = 0; // Used to save defender's Region index in tabler[] //
 		int f1 = 0; // Used for saving fortify Region 1 index in tabler[] //
@@ -65,24 +66,28 @@ public class Function {
 				if (answerI == 1) { // Option 1 : attack
 
 					System.out.println("From where do you want to attack ?");
-					try {
-						for (counter = 0; counter < alliedStates.size(); counter++) {
-							System.out.println(alliedStates.get(counter));
-						}
-					} catch (IndexOutOfBoundsException e) {
-						System.out.print("Region not found, please try again...");
-					}
-					flag = true;
-					while (flag) { // Check valid input
 
-						ras = keyboard.nextLine();
-						for (counter = 0; counter < alliedStates.size(); counter++) {
-							if (ras.equals(alliedStates.get(counter))) {
-								flag = false;
-								break;
-							} else {
+					for (counter = 0; counter < alliedStates.size(); counter++) {
+						System.out.println(alliedStates.get(counter));
+					}
+
+					flag = true;
+					outerloop: while (flag) { // Check valid input
+
+						try {
+							ras = keyboard.nextLine();
+							for (counter = 0; counter < alliedStates.size(); counter++) {
+								if (ras.equals(alliedStates.get(counter))) {
+									flagint = 1;
+									break outerloop;
+								}
+							}
+
+							if (flagint == 0) {
 								System.out.println("Region not found, please try again..."); // Wrong input message
 							}
+						} catch (IndexOutOfBoundsException e) {
+							System.out.print("");
 						}
 
 					}
@@ -98,7 +103,7 @@ public class Function {
 					alliedBrds.clear(); // Removes all elements
 					alliedBrds = GameApp.tabler[ra].getBorders();
 					System.out.println(alliedBrds); // Print borders of region tabler[ra]
-					flag = true;
+					flag = true; // FLAG INT TO DO !!!!!!!!
 					while (flag) { // Check valid input
 						rds = keyboard.nextLine();
 						for (counter = 0; counter < alliedBrds.size(); counter++) {
@@ -219,10 +224,11 @@ public class Function {
 		String answerS = null; // Used for String answers //
 		while (s != 0) {
 			System.out.println(alliedStates);
-			System.out.println("Where would you like to place your soldiers ? ");
+			System.out.println("Where would you like to place your soldiers ?");
 			System.out.println("Remaining soldiers to place : " + s);
 			flag = true;
 			outerloop: while (flag) { // Check valid input
+
 				try {
 					answerS = keyboard.nextLine();
 					for (counter = 0; counter < alliedStates.size(); counter++) {
@@ -238,6 +244,7 @@ public class Function {
 				} catch (IndexOutOfBoundsException e) {
 					System.out.print("");
 				}
+
 			}
 
 			for (counter = 0; counter <= 19; counter++) {
