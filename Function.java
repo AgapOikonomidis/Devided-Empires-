@@ -73,17 +73,14 @@ public class Function {
 
 					flag = true;
 					flagint = 0;
-					
+
 					outerloop: while (flag) { // Check valid input
-
 						// try {
-
 						ras = keyboard.nextLine();
 						for (counter = 0; counter < alliedStates.size(); counter++) {
 							if (ras.equals(alliedStates.get(counter))) {
 								flagint = 1;
 								break outerloop;
-
 							}
 						}
 
@@ -113,10 +110,10 @@ public class Function {
 					outerloop: while (flag) { // Check valid input
 						// try {
 						rds = keyboard.nextLine();
+
 						for (counter = 0; counter < alliedBrds.size(); counter++) {
 							if (rds.equals(alliedBrds.get(counter))) {
 								flagint = 1;
-
 								break outerloop;
 							}
 
@@ -245,6 +242,9 @@ public class Function {
 
 				try {
 					answerS = keyboard.nextLine();
+					if (!(answerS.getClass().equals(String.class))) {
+						System.out.println("Wrong input...");
+					}
 					for (counter = 0; counter < alliedStates.size(); counter++) {
 						if (answerS.equals(alliedStates.get(counter))) {
 							flagint = 1;
@@ -270,7 +270,9 @@ public class Function {
 			System.out.println("How many soldiers do you want to place ?");
 			flag = true;
 			while (flag) { // Check valid input
+
 				answerI = keyboard.nextInt();
+
 				if (answerI < 0) {
 					System.out.println("Wrong input : Positive number of soldiers expected, please try again."); // Wrong
 																													// input
@@ -298,7 +300,7 @@ public class Function {
 		int defenderSoldiers = GameApp.tabler[rd].getRegionSoldiers(); // Used for saving defender's soldier number //
 		int adice = 0; // Used for saving the result of attacker's dice //
 		int ddice = 0; // Used for saving the result of defender's dice //
-		while (attackerSoldiers != 1 || defenderSoldiers != 0) {
+		while (attackerSoldiers != 1 && defenderSoldiers != 0) {
 			adice = 1 + dice.nextInt(6);
 			ddice = 1 + dice.nextInt(6);
 			if (adice >= ddice) {
@@ -308,6 +310,8 @@ public class Function {
 			}
 		}
 		if (attackerSoldiers == 1) { // Attacker loses
+			System.out.println("Attacker lost!");
+			System.out.println("All your soldiers have beed defeated asshole.\n");
 			GameApp.tabler[ra].setRegionSoldiers(1);
 			GameApp.tabler[rd].setRegionSoldiers(defenderSoldiers);
 		}
@@ -317,8 +321,9 @@ public class Function {
 																							// regions by 1
 			GameApp.tablep[jd].setPlayerRegions(GameApp.tablep[jd].getPlayerRegions() - 1); // Decreases defender's
 																							// regions by 1
-			System.out.println(
-					"Attacker wins ! How many soldiers do you want to place in " + GameApp.tabler[rd].getRegionName());
+			System.out.println("Attacker wins ! How many soldiers do you want to place in "
+					+ GameApp.tabler[rd].getRegionName() + "?");
+			System.out.println("You have " + (attackerSoldiers - 1) + "available soldier");
 			while (flag) {
 				answerI = keyboard.nextInt();
 				if (answerI > 0 && answerI <= attackerSoldiers) {
