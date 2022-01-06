@@ -18,7 +18,7 @@ public class Function {
 
 		boolean flag = true; // Used for while{} loop //
 
-		int flagint = 0; // Used for FLAG INT
+		int flagint = 0; // Used for while{} loop //
 		int ra = 0; // Used to save attacker's Region index in tabler[] //
 		int rd = 0; // Used to save defender's Region index in tabler[] //
 		int f1 = 0; // Used for saving fortify Region 1 index in tabler[] //
@@ -72,23 +72,27 @@ public class Function {
 					}
 
 					flag = true;
+					flagint = 0;
+					
 					outerloop: while (flag) { // Check valid input
 
-						try {
-							ras = keyboard.nextLine();
-							for (counter = 0; counter < alliedStates.size(); counter++) {
-								if (ras.equals(alliedStates.get(counter))) {
-									flagint = 1;
-									break outerloop;
-								}
-							}
+						// try {
 
-							if (flagint == 0) {
-								System.out.println("Region not found, please try again..."); // Wrong input message
+						ras = keyboard.nextLine();
+						for (counter = 0; counter < alliedStates.size(); counter++) {
+							if (ras.equals(alliedStates.get(counter))) {
+								flagint = 1;
+								break outerloop;
+
 							}
-						} catch (IndexOutOfBoundsException e) {
-							System.out.print("");
 						}
+
+						if (flagint == 0) {
+							System.out.println("Region not found, please try again..."); // Wrong input message
+						}
+						// } catch (IndexOutOfBoundsException e) {
+						// System.out.print("");
+						// }
 
 					}
 
@@ -103,19 +107,28 @@ public class Function {
 					alliedBrds.clear(); // Removes all elements
 					alliedBrds = GameApp.tabler[ra].getBorders();
 					System.out.println(alliedBrds); // Print borders of region tabler[ra]
-					flag = true; // FLAG INT TO DO !!!!!!!!
-					while (flag) { // Check valid input
+
+					flagint = 0;
+					flag = true;
+					outerloop: while (flag) { // Check valid input
+						// try {
 						rds = keyboard.nextLine();
 						for (counter = 0; counter < alliedBrds.size(); counter++) {
 							if (rds.equals(alliedBrds.get(counter))) {
-								flag = false;
-								break;
+								flagint = 1;
+
+								break outerloop;
 							}
+
 						}
 
-						if (flag == true) {
+						if (flagint == 0) {
 							System.out.println("Region not found, please try again..."); // Wrong input message
 						}
+						// } catch (Exception e) {
+						// System.out.println("Exception");
+						// }
+
 					}
 
 					for (counter = 0; counter <= 19; counter++) {
@@ -205,6 +218,7 @@ public class Function {
 				}
 			}
 		}
+
 	} // End of gameStart()
 
 	public static int checkSoldiers(int j) { // Gives soldiers to players depending on their regions' number
