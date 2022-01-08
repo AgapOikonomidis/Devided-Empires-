@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Function {
 
 	static Scanner keyboard = new Scanner(System.in); // Used to get input from players
-	static int win = 1;
 
 	public static void gameStart() { // Starts the game with round 1 //
 
@@ -36,6 +35,7 @@ public class Function {
 																	// same color //
 
 		for (int i = 1; i <= 50; i++) { // Round i
+			System.out.println("Round " + i + "\n");
 			for (int j = 0; j <= 3; j++) { // Player j
 
 				tempColor = GameApp.tablep[j].getPlayerColor();
@@ -67,10 +67,7 @@ public class Function {
 				if (answerI == 1) { // Option 1 : attack
 
 					System.out.println("From where do you want to attack ?");
-
-					for (counter = 0; counter < alliedStates.size(); counter++) {
-						System.out.println(alliedStates.get(counter));
-					}
+					System.out.println(alliedStates);
 
 					flag = true;
 					flagint = 0;
@@ -179,12 +176,13 @@ public class Function {
 								if (fcolor.equals(GameApp.tabler[counter2].getRegionColor())) { // Color in ArrayList
 																								// matches color in
 																								// Array
-									System.out.print(frtfBrds.get(counter) + " ");
+									// System.out.print(frtfBrds.get(counter) + " ");
 									fortifyBorders.add(frtfBrds.get(counter));
 								}
 							}
 						}
 					}
+					System.out.println(fortifyBorders);
 					flag = true;
 					while (flag) { // Check valid input
 						answerS = keyboard.nextLine();
@@ -248,11 +246,8 @@ public class Function {
 					}
 				}
 
-				if (win == 0) {
-					if (flagint == 0) { // RNF
-						System.out.println("Region not found, please try again..."); // Wrong input message
-					}
-
+				if (flagint == 0) { // RNF
+					System.out.println("Region not found, please try again..."); // Wrong input message
 				}
 
 			}
@@ -307,10 +302,9 @@ public class Function {
 		}
 		if (attackerSoldiers == 1) { // Attacker loses
 			System.out.println("Attacker lost!");
-			System.out.println("All your soldiers have beed defeated asshole.\n");
+			System.out.println("All your soldiers have beed defeated.\n");
 			GameApp.tabler[ra].setRegionSoldiers(1);
 			GameApp.tabler[rd].setRegionSoldiers(defenderSoldiers);
-			win = 0;
 		}
 		flag = true;
 		if (defenderSoldiers == 0) { // Attacker wins
@@ -320,8 +314,8 @@ public class Function {
 																							// regions by 1
 			System.out.println("Attacker wins! How many soldiers do you want to place in "
 					+ GameApp.tabler[rd].getRegionName() + "?");
-			System.out.println("You have " + (attackerSoldiers - 1) + " available soldiers");
-			win = 1;
+			System.out.println("You have " + (attackerSoldiers - 1) + " available soldiers.");
+
 			while (flag) {
 				answerI = keyboard.nextInt();
 				if (answerI > 0 && answerI <= attackerSoldiers - 1) {
@@ -342,6 +336,7 @@ public class Function {
 													// )
 
 		System.out.println("How many soldiers do you want to move ?");
+		System.out.println("You can move up to " + (GameApp.tabler[f1].getRegionSoldiers() - 1) + " soldiers.");
 		int answerI;
 		do {
 			answerI = keyboard.nextInt();
@@ -350,8 +345,8 @@ public class Function {
 				GameApp.tabler[f2].setRegionSoldiers(GameApp.tabler[f2].getRegionSoldiers() + answerI);
 				break;
 			} else {
-				System.out.println(
-						"Wrong input : number of soldiers must be greater than 1 and less or equal to " + answerI);
+				System.out.println("Wrong input : number of soldiers must be greater than 1 and less or equal to "
+						+ (GameApp.tabler[f1].getRegionSoldiers() - 1));
 				System.out.println("Please try again..."); // Wrong input message
 			}
 		} while (true);
