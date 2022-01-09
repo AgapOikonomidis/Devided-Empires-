@@ -45,6 +45,14 @@ public class Function {
 						alliedStates.add(GameApp.tabler[counter].getRegionName());
 					}
 				}
+				/*for (int a = 1; a <= GameApp.tablep[j].getPlayerRegions(); a++) {
+					for (int b = 0; b <= 19; b++) {
+						if (GameApp.tabler[b].getRegionColor().equals(tempColor)) {
+							System.out.println(GameApp.tabler[b].getRegionName());
+
+						}
+					}
+				}*/
 				System.out.println(GameApp.tablep[j].getPlayerName() + " is your turn to play");
 				placeSoldiers(checkSoldiers(j), j, alliedStates);
 				flag = true;
