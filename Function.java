@@ -28,6 +28,7 @@ public class Function {
 		int counter2 = 0; // Used as loop counter //
 		int j2 = 4; // Used for saving player's index in table p[] //
 
+		ArrayList<String> allowedFortify = new ArrayList<String>();
 		ArrayList<String> alliedStates = new ArrayList<String>(); // Contains player's allied Regions //
 		ArrayList<String> alliedBrds = new ArrayList<String>(); // Contains allied borders of a player's Region //
 		ArrayList<String> frtfBrds = new ArrayList<String>(); // Contains fortifying Region's borders //
@@ -45,14 +46,27 @@ public class Function {
 						alliedStates.add(GameApp.tabler[counter].getRegionName());
 					}
 				}
-				/*for (int a = 1; a <= GameApp.tablep[j].getPlayerRegions(); a++) {
+				allowedFortify.clear();
+				for (int a = 0; a < alliedStates.size(); a++) {
 					for (int b = 0; b <= 19; b++) {
-						if (GameApp.tabler[b].getRegionColor().equals(tempColor)) {
-							System.out.println(GameApp.tabler[b].getRegionName());
+						if (alliedStates.get(a).equals(GameApp.tabler[b].getRegionName())) {
+							for (int c = 0; c < GameApp.tabler[b].getBorders().size(); c++) {
+								for (int d = 0; d <= 19; d++) {
+									if (GameApp.tabler[b].getBorders().get(c)
+											.equals(GameApp.tabler[d].getRegionName())) {
+										int e = d;
+										if (String.valueOf(GameApp.tabler[e].getRegionColor())
+												.equals(String.valueOf(tempColor))) {
+											allowedFortify.add(GameApp.tabler[e].getRegionName());
+										}
+									}
+								}
 
+							}
 						}
 					}
-				}*/
+				}
+
 				System.out.println(GameApp.tablep[j].getPlayerName() + " is your turn to play");
 				placeSoldiers(checkSoldiers(j), j, alliedStates);
 				flag = true;
@@ -62,9 +76,14 @@ public class Function {
 					System.out.println("2. Fortify");
 					System.out.println("3. Skip");
 					answerI = keyboard.nextInt();
-					if (answerI == 1 || answerI == 2 || answerI == 3) { // Check valid input for the options
-																		// attack, fortify, skip
+					if (answerI == 1 || (answerI == 2 && allowedFortify.size() != 0) || answerI == 3) { // Check valid
+																										// input for the
+																										// options
+																										// attack,
+																										// fortify, skip
 						flag = false;
+					} else if (answerI == 2 && allowedFortify.size() == 0) {
+						System.out.println("There is no region from where you can fortify soldiers");
 					} else {
 						System.out.println("Wrong input : Choose between options 1, 2 or 3, please try again..."); // Wrong
 																													// input
@@ -146,12 +165,12 @@ public class Function {
 					attack(ra, rd, j, j2);
 				} else if (answerI == 2) { // Option 2 : fortify
 					System.out.println("From where do you want to move soldiers ?");
-					System.out.println(alliedStates);
+					System.out.println(allowedFortify);
 					flag = true;
 					while (flag) { // Check valid input
 						answerS = keyboard.nextLine();
-						for (counter = 0; counter < alliedStates.size(); counter++) {
-							if (answerS.equals(alliedStates.get(counter))) {
+						for (counter = 0; counter < allowedFortify.size(); counter++) {
+							if (answerS.equals(allowedFortify.get(counter))) {
 								flag = false;
 								break;
 							}
