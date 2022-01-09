@@ -166,18 +166,23 @@ public class Function {
 				} else if (answerI == 2) { // Option 2 : fortify
 					System.out.println("From where do you want to move soldiers ?");
 					System.out.println(allowedFortify);
+					flagint = 0;
+					int co2 = 0;
 					flag = true;
-					while (flag) { // Check valid input
+					outerloop: while (flag) { // Check valid input
 						answerS = keyboard.nextLine();
 						for (counter = 0; counter < allowedFortify.size(); counter++) {
 							if (answerS.equals(allowedFortify.get(counter))) {
-								flag = false;
-								break;
+								flagint = 1;
+								break outerloop;
 							}
 						}
-						if (flag == true) {
-							System.out.println("Region not found, please try again..."); // Wrong input message
+						if (co2 != 0) {
+							if (flagint == 0) {
+								System.out.println("Region not found, please try again..."); // Wrong input message
+							}
 						}
+						co2++;
 					}
 
 					for (counter = 0; counter <= 19; counter++) {
@@ -203,7 +208,7 @@ public class Function {
 								if (fcolor.equals(GameApp.tabler[counter2].getRegionColor())) { // Color in ArrayList
 																								// matches color in
 																								// Array
-									// System.out.print(frtfBrds.get(counter) + " ");
+
 									fortifyBorders.add(frtfBrds.get(counter));
 								}
 							}
@@ -263,17 +268,14 @@ public class Function {
 			outerloop: while (flag) { // Check valid input
 
 				answerS = keyboard.nextLine();
-				if (!(answerS.getClass().equals(String.class))) {
-					System.out.println("Wrong input...");
-				}
+
 				for (counter = 0; counter < alliedStates.size(); counter++) {
 					if (answerS.equals(alliedStates.get(counter))) {
-						flagint = 1;
 						break outerloop;
 					}
 				}
 
-				if (flagint == 0) { // RNF
+				if (flagint == 0) { // RNF !!!!!!!!!!!!!!!!!
 					System.out.println("Region not found, please try again..."); // Wrong input message
 				}
 
