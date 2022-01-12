@@ -45,7 +45,7 @@ public class GameApp {
 		br2.add("Thinis");
 		br3.add("Babylon");
 		br3.add("Memphis");
-		br4.add("Crete");
+		br4.add("Sardinia");
 		br4.add("Nineveh");
 		br5.add("Persepolis");
 		br5.add("Rome");
