@@ -7,6 +7,8 @@ public class Function {
 
 	static Scanner keyboard = new Scanner(System.in); // Used to get input from players
 
+	public static int i;
+
 	public static void gameStart() { // Starts the game with round 1 //
 
 		Color tempColor = null; // Used for saving player's color //
@@ -35,7 +37,7 @@ public class Function {
 		ArrayList<String> fortifyBorders = new ArrayList<String>(); // Contains fortifying Region's borders with the
 																	// same color //
 
-		for (int i = 1; i <= 50; i++) { // Round i
+		for (i = 1; i <= 50; i++) { // Round i
 			System.out.println("Round " + i + "\n");
 			for (int j = 0; j <= 3; j++) { // Player j
 
@@ -265,19 +267,24 @@ public class Function {
 			System.out.println("Where would you like to place your soldiers ?");
 			System.out.println("Remaining soldiers to place : " + s);
 			flag = true;
+			flagint = 0;
+			int co = 0;
 			outerloop: while (flag) { // Check valid input
 
 				answerS = keyboard.nextLine();
 
 				for (counter = 0; counter < alliedStates.size(); counter++) {
 					if (answerS.equals(alliedStates.get(counter))) {
+						flagint = 1;
 						break outerloop;
 					}
 				}
-
-				if (flagint == 0) { // RNF !!!!!!!!!!!!!!!!!
-					System.out.println("Region not found, please try again..."); // Wrong input message
+				if (co != 0) {
+					if (flagint == 0) { // RNF !!!!!!!!!!!!!!!!!
+						System.out.println("Region not found, please try again..."); // Wrong input message
+					}
 				}
+				co++;
 
 			}
 
