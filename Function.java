@@ -360,8 +360,8 @@ public class Function {
 					GameApp.tabler[ra].setRegionSoldiers(attackerSoldiers - answerI);
 					GameApp.tabler[rd].setRegionColor(GameApp.tabler[ra].getRegionColor());
 				} else {
-					System.out.println("Wrong input : number of soldiers must be zero or positive and less than "
-							+ attackerSoldiers);
+					System.out.println(
+							"Wrong input : number of soldiers must positive and less than " + attackerSoldiers);
 					System.out.println("Please try again..."); // Wrong input message
 				}
 			}
