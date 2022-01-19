@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class GameApp {
+	public static int mapFlag = 0;
 
 	static ArrayList<String> br1 = new ArrayList<String>();
 	static ArrayList<String> br2 = new ArrayList<String>();
@@ -45,8 +46,8 @@ public class GameApp {
 		br2.add("Thinis");
 		br3.add("Babylon");
 		br3.add("Memphis");
-		br4.add("Sardinia");
 		br4.add("Nineveh");
+		br4.add("Sardinia");
 		br5.add("Persepolis");
 		br5.add("Rome");
 		br5.add("Babylon");
@@ -153,12 +154,12 @@ public class GameApp {
 		tablep[2] = p3;
 		tablep[3] = p4;
 
-		// Starts the Game Functions
-		Function.gameStart();
 	}
 
 	public static void main(String[] args) {
-		MainMenu.menu(); // opens Main Menu window
-		GameApp.borderPlacing(); // for each region creates an array list with borders
+		borderPlacing(); // for each region creates an array list with borders
+		initializePlayers(); // creating players
+		Function.gameStart(); // Starts the game
+
 	}
 }
